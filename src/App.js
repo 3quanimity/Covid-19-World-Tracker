@@ -28,6 +28,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+  
   }, []);
 
   const date = new Date(parseInt(latest.updated));
@@ -42,8 +43,9 @@ function App() {
         .includes(searchCountries.toLocaleLowerCase());
     });
 
-  const countries = filteredCountries.map((data, i) => {
-    return (
+  const countries = filteredCountries.map((data, i) =>   
+   data && (
+      
       <Accordion
         bg="light"
         text="dark"
@@ -74,9 +76,10 @@ function App() {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-    );
-  });
+    )
+  );
 
+ 
   const queries = [
     {
       columns: 2,
@@ -84,10 +87,13 @@ function App() {
     },
     {
       columns: 3,
-      query: "min-width: 1000px",
+      query: "min-width: 1000px ",
+      css:"background:red"
     },
   ];
-
+ 
+  
+ 
   return (
     <div className="App">
       <br />
@@ -98,7 +104,7 @@ function App() {
           bg="primary"
           text="light"
           className="text-center"
-          style={{ margin: "10px" }}
+          style={{ margin: "10px 0px" }}
         >
           <Card.Body>
             <Card.Title>Cases</Card.Title>
@@ -130,7 +136,7 @@ function App() {
           bg="success"
           text="light"
           className="text-center"
-          style={{ margin: "10px" }}
+          style={{ margin: "10px 0px" }}
         >
           <Card.Body>
             <Card.Title>Recovered</Card.Title>
@@ -154,13 +160,25 @@ function App() {
           />
         </Form.Group>
       </Form>
-
-      <Columns queries={queries}>{countries}</Columns>
+      { countries && <Columns    queries={queries} className="test">{countries}</Columns> }
+    
     </div>
+   
   );
+
 }
 
+//made with love
+//made with love
 export default App;
+//made with love
+//made with love
+
+
+
+
+
+
 
 // {"updated":1586441326418,
 // "country":"USA",
